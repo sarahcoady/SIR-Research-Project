@@ -1,46 +1,47 @@
 \documentclass{article}
-\usepackage{graphicx} % Required for inserting images
 
-\title{Assessing the Accuracy of the SIR model Across Epidemic Phases}
+\usepackage[left=1.25in, right=1.25in, top=1.3in, bottom=1.3in]{geometry}
+\usepackage{url}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{cite}
+\usepackage{graphicx}
+\title{Assessing the Accuracy of the SIR Model Across Epidemic Phases}
 \author{Sarah Coady}
 \date{January 2026}
 
 \begin{document}
 
 \maketitle
-
+\vspace{1cm}
+\newpage
 \section{Introduction}
-
-Epidemic modelling (EM) is an important tool in epidemiology that uses various mathematical tools to help assess and predict the spread of real world infectious diseases (NLM). There is a wide range of epidemic models, each using different assumptions about the observed population and the transmission of the disease. This project will study the Susceptible, Infected, Removed (SIR) model. Specifically, we will test how accurate the SIR model is at producing real world infectious disease outbreak patterns across two phases, the early growth phase and the mid stage, close to its peak. This will be accomplished by comparing curves acquired from both the SIR model and real historical data. By applying the SIR model to real outbreaks we can examine where it successfully replicates real patterns and where it fails. Understanding the spread of infectious disease is incredibly relevant to global health. Having a strong understanding of this model is valuable to improving epidemiological predictions and maximizing awareness and prevention. Knowing the SIR model's strengths and limitations ensures correct application for optimal results. We will apply the SIR model to the historical records of both Measles and COVID-19 during specific time periods, as these are two highly contagious and well documented infectious diseases that had significant impacts on public health and societal wellbeing.
+Epidemic modelling (EM) is an important tool in epidemiology that uses various mathematical tools to help assess and predict the spread of real world infectious diseases\cite{Sofonea2022sir}. This project will study the Susceptible, Infected, Removed (SIR) model. Specifically, we will test how accurate the SIR model is at producing real world infectious disease outbreak patterns across two phases, the early growth phase and the mid stage, close to its peak. By applying the SIR model to real outbreaks we can examine where it successfully replicates actual patterns and where it fails. We will apply the SIR model to the historical records of both Measles and COVID-19 during specific time periods, as these are two highly contagious and well documented infectious diseases that had significant impacts on public health and societal well being.
 
 \section{The SIR Model}
 The SIR model is a set of three ordinary differential equations (ODEs) that can be used to obtain a stronger understanding of the spread of infectious diseases. The model divides a population into three groups.
-
-\textbf{Susceptible individuals, S(t)}: People in the population that are not infected, but could become infected (SD). 
-
+\textbf{Susceptible individuals, S(t)}: People in the population that are not infected, but could become infected \cite{cooper2020sir}. 
 \textbf{Infected Individuals, I(t)}: People in the population who have been infected by the disease and can then transmit it to other susceptible individuals.
-
-\textbf{Removed individuals, R(t)}: People in the population who have recovered from the diseased or who have died.
-
-The SIR model then uses basic assumptions and the rate of change of each of the three groups to acquire the system of ODEs. 
+\textbf{Removed individuals, R(t)}: People in the population who have recovered from the diseased or who have died\cite{cooper2020sir}.
+The SIR model then uses basic assumptions and the rate of change of each of the three groups to acquire the system of ODEs\cite{cooper2020sir}. 
 
 \section{Research Questions}
-
-We will investigate the following:
-\begin{itemize}
-    \item Does the SIR model accurately display early exponential growth compared to the real outbreak?
-    \item Does the SIR model accurately predict the timing and peak of the spread, compared to the real outbreak?
-    \item Is there a difference in accuracy between the early phase and mid phase predictions obtained from the model? 
-\end{itemize} 
+We will investigate the following: Does the SIR model accurately display early exponential growth compared to the real outbreak? Does the SIR model accurately predict the timing and peak of the spread, compared to the real outbreak? Is there a difference in accuracy between the early phase and mid phase predictions obtained from the model?  
 
 \section{Methods}
+A SIR model will be created using assumptions and data obtained from peer-reviewed journals on both Measles and COVID-19. Real-world data will be obtained directly from public health records. The simulated outbreak patterns from both previously stated phases will be compared to real world outbreak patterns to assess the strengths and weaknesses of the SIR model. This will be done by comparing the SIR models predicted outbreak curves to the corresponding observed outbreak curves from historical data. Project repository can be found at: \url{https://github.com/sarahcoady/SIR-Research-Project}
 
-A SIR model will be created using assumptions and data obtained from peer-reviewed journals on both Measles and COVID-19. The simulated outbreak patterns from both previously stated phases will be compared to real world outbreak patterns to assess the strengths and weaknesses of the SIR model. Real-world data will be obtained directly from public health records. This will be done by comparing the SIR models predicted outbreak curves to the corresponding observed outbreak curves from historical data.
+\begin{thebibliography}{99}
 
-\section{Version Control Repository}
+\bibitem{Sofonea2022sir}
+Sofonea, M. T., Cauchemez, S., & Boëlle, P.-Y. (2022). Epidemic models: why and how to use them. Anaesthesia Critical Care & Pain Medicine, 41(2), Article 101048. https://doi.org/10.1016/j.accpm.2022.101048
 
-Project repository can be found at:
-\url{https://github.com/sarahcoady/SIR-Research-Project}
+\bibitem{cooper2020sir}
+Cooper, I., Mondal, A., \& Antonopoulos, C. G. (2020).
+A SIR model assumption for the spread of COVID-19 in different communities.
+\textit{Chaos, Solitons and Fractals}, 139, Article 110057.
+
+\end{thebibliography}
 
 \end{document}
 
