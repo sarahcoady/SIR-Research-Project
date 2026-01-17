@@ -1,0 +1,92 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usepackage{graphicx} % For including graphics
+\usepackage{fancyhdr,amsfonts,graphicx,amsmath,url,hyperref,enumerate}
+\usepackage{float}
+\usepackage[right=2.5cm,left=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+
+\pagestyle{fancy}
+%\lhead{Memorial University of Newfoundland}
+%\rhead{Department of Mathematics and Statistics}
+%\renewcommand{\headrulewidth}{0.4pt}
+%
+%\lfoot{Mathematics 2130}
+%\cfoot{}
+%\rfoot{Fall 2015, Project 1}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{document}
+\begin{titlepage}
+\vspace*{2in}
+\begin{center}
+{\LARGE Assessing the Accuracy of the SIR Model Across Epidemic Phases}
+\end{center}
+
+\vspace{2cm}
+
+
+
+\vspace{3in}
+\begin{flushright}
+\begin{tabular}{l}
+Project 1\\
+Mathematics 3030\\
+Submitted by: Sarah Coady\\
+Submitted to: Dr. Bihlo\\
+\today
+\end{tabular}
+\end{flushright}
+\end{titlepage}
+
+\lhead{Project 1}
+\rhead{M3030}
+\lfoot{Sarah Coady}
+
+%\underheadoverfoot
+\newpage
+\section{Introduction}
+Epidemic modelling (EM) is an important tool in epidemiology that uses various mathematical tools to help asses and predict the spread of real world infectious diseases\cite{Sofonea2022sir}. There is a wide range of epidemic models, each using different assumptions about the observed population and the transmission of the disease. This project will study the Susceptible, Infected, Removed (SIR) model. Specifically, we will test how accurate the SIR model is at producing real world infectious disease outbreak patterns across two phases, the early growth phase and the mid stage, close to its peak. This will be accomplished by comparing curves acquired from both the SIR model and real historical data. By applying the SIR model to real outbreaks we can examine where it successfully replicates real patterns and where it fails. Understanding the spread of infectious disease is incredibly relevant to global health. Having a strong understanding of this model is valuable to improving epidemiological predictions and maximizing awareness and prevention. Knowing the SIR model's strengths and limitations ensures correct application for optimal results. We will apply the SIR model to the historical records of both Measles and COVID-19 during specific time periods, as these are two highly contagious and well documented infectious diseases that had significant impacts on public health and societal well being.
+\subsection{The SIR Model}
+The SIR model is a set of three ordinary differential equations (ODEs) that can be used to obtain a stronger understanding of the spread of infectious diseases. The model divides a population into three groups.
+\begin{itemize}
+    \item\textbf{Susceptible individuals, S(t)}: People in the population that are not infected, but could become infected \cite{cooper2020sir}. 
+
+    \item\textbf{Infected Individuals, I(t)}: People in the population who have been infected by the disease and can then transmit it to other susceptible individuals.
+
+    \item\textbf{Removed individuals, R(t)}: People in the population who have recovered from the disease or who have died\cite{cooper2020sir}.
+\end{itemize}
+\noindent The SIR model then uses basic assumptions and the rate of change of each of the three groups to acquire the system of ODEs\cite{cooper2020sir}.
+
+\subsubsection{System of ODEs}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\begin{thebibliography}{99}
+
+\bibitem{Sofonea2022sir}
+Sofonea, M. T., Cauchemez, S., & Boëlle, P.-Y. (2022). Epidemic models: why and how to use them. Anaesthesia Critical Care & Pain Medicine, 41(2), Article 101048. https://doi.org/10.1016/j.accpm.2022.101048
+
+\bibitem{cooper2020sir}
+Cooper, I., Mondal, A., & Antonopoulos, C. G. (2020). A SIR model assumption for the spread of COVID-19 in different communities. Chaos, Solitons and Fractals, 139, Article 110057. https://doi.org/10.1016/j.chaos.2020.110057
+
+
+\end{thebibliography}
+\end{document}
