@@ -58,7 +58,21 @@ The SIR model is a set of three ordinary differential equations (ODEs) that can 
 \end{itemize}
 \noindent The SIR model then uses basic assumptions and the rate of change of each of the three groups to acquire the system of ODEs\cite{cooper2020sir}.
 
-\subsubsection{System of ODEs}
+\subsubsection{System of ODEs or equation unsure yet}
+
+The population will be referred to as N. where \[N=S+I+R\]
+We want to study how the sizes of the cohorts change over time, specifically I(t) which is the size of the infected cohort at a specific time t. To do this we require a set of equations involving the cohorts rates of change.  We treat S,I,R as continuous variables, therefore we can take their rates of change. 
+\[\frac{dS}{dt}=-\beta SI\] \ 
+\[\frac{dI}{dt} = \beta SI-\gamma I\] 
+\[\frac{dR}{dt}=\gamma I\]
+
+where $\beta$ is the transmitting rate per capita. $\gamma$ is the recovery rate, which implies the mean infectious period is  1/$\gamma$. Initially we will assume everyone is susceptible, so $S(0)= N$. Once an infected individual is introduced to the population the rate which they transmit the disease is $BN$ during the infected period of $1/\gamma$.  Therefore, we can predict the expected number of individuals to be infected by the initial individual  at a rate of $\mathbb{R_0}=\beta N/\gamma$ .   $\mathbb{R_0} $ is titled the basic reproduction number.
+
+\subsection{Obtaining $I(t)$}
+\subsubsection{Solving for $dI/ds$}
+\[\frac{dI}{dS}=\frac{dI/dt}{dS/dt}\]
+\[=-\frac{\beta SI-\gamma }{\beta SI}\]
+\[=-1 + \frac{1}{\mathbb{R_0S}}\]
 
 
 
