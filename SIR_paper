@@ -68,11 +68,12 @@ We want to study how the sizes of the cohorts change over time, specifically I(t
 
 where $\beta$ is the transmitting rate per capita. $\gamma$ is the recovery rate, which implies the mean infectious period is  1/$\gamma$. Initially we will assume everyone is susceptible, so $S(0)= N$. Once an infected individual is introduced to the population the rate which they transmit the disease is $BN$ during the infected period of $1/\gamma$.  Therefore, we can predict the expected number of individuals to be infected by the initial individual  at a rate of $\mathbb{R_0}=\beta N/\gamma$ .   $\mathbb{R_0} $ is titled the basic reproduction number.
 
-\subsection{Obtaining $I(t)$}
-\subsubsection{Solving for $dI/ds$}
-\[\frac{dI}{dS}=\frac{dI/dt}{dS/dt}\]
-\[=-\frac{\beta SI-\gamma }{\beta SI}\]
-\[=-1 + \frac{1}{\mathbb{R_0S}}\]
+The SIR model requires certain assumptions to simplify the population. It assumes homogeneous mixing of both the infected, meaning that everyone in the population has the same probability of  coming in to contact with one and other. The model also assumes a closed population. Therefore, it does not account for births,  relocation, or deaths caused due to factors(JAMA) 
+
+\subsection{Measles data Selection and Training Prediction Split}
+The measles outbreak data was collected from Project Tycho, a large open-access data source with millions of records of infectious diseases cases. The timeline and population chosen were January 1st, 1960 to August 21st 1960,  Massachusetts, United states. The SIR model can only describe one outbreak at a time, so the chosen timeline observed is an outbreak observed over  32 weeks.
+
+To properly evaluate the the performance of the SIR models predictions we were required to pick a training period. The first five weeks were used for the estimations of the SIR model's parameters and to capture the early growth phase of this outbreak. The rest of the weeks were used to assess the models ability to predict the timing and magnitude of the outbreak's peak. For if the remaining weeks are used in the models training it will not predict the peak, it will simply have been shown it.
 
 
 
