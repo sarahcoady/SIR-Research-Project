@@ -47,7 +47,7 @@ Submitted to: Dr. Bihlo\\
 %\underheadoverfoot
 \newpage
 \section{Introduction}
-Epidemic modelling (EM) is an important tool in epidemiology that uses various mathematical tools to help asses and predict the spread of real world infectious diseases\cite{Sofonea2022sir}. There is a wide range of epidemic models, each using different assumptions about the observed population and the transmission of the disease. This project will study the Susceptible, Infected, Removed (SIR) model. Specifically, we will test how accurate the SIR model is at producing real world infectious disease outbreak patterns across two phases, the early growth phase and the mid stage, close to its peak. This will be accomplished by comparing curves acquired from both the SIR model and real historical data. By applying the SIR model to real outbreaks we can examine where it successfully replicates real patterns and where it fails. Understanding the spread of infectious disease is incredibly relevant to global health. Having a strong understanding of this model is valuable to improving epidemiological predictions and maximizing awareness and prevention. Knowing the SIR model's strengths and limitations ensures correct application for optimal results. We will apply the SIR model to the historical records of both Measles and COVID-19 during specific time periods, as these are two highly contagious and well documented infectious diseases that had significant impacts on public health and societal well being.
+Epidemic modelling (EM) is an important tool in epidemiology that uses various mathematical tools to help access and predict the spread of real world infectious diseases\cite{Sofonea2022sir}. There is a wide range of epidemic models, each using different assumptions about the observed population and the transmission of the disease. This project will study the Susceptible, Infected, Removed (SIR) model. Specifically, we will test how accurate the SIR model is at producing real world infectious disease outbreak patterns across two phases, the early growth phase and the mid stage, close to its peak. This will be accomplished by comparing curves acquired from both the SIR model and real historical data. By applying the SIR model to real outbreaks we can examine where it successfully replicates real patterns and where it fails. Understanding the spread of infectious disease is incredibly relevant to global health. Having a strong understanding of this model is valuable to improving epidemiological predictions and maximizing awareness and prevention. Knowing the SIR model's strengths and limitations ensures correct application for optimal results. We will apply the SIR model to the historical records of both Measles and COVID-19 during specific time periods, as these are two highly contagious and well documented infectious diseases that had significant impacts on public health and societal well being.
 \section{Method}
 \subsection{The SIR Model}
 The SIR model is a set of ordinary differential equations (ODEs) that can be used to obtain a stronger understanding of the spread of infectious diseases. The model divides the studied population into three groups, which will be referred to as cohorts.
@@ -61,7 +61,7 @@ The SIR model is a set of ordinary differential equations (ODEs) that can be use
 \noindent The SIR model then uses basic assumptions and the rate of change of each of the three groups to acquire the system of ODEs\cite{cooper2020sir}.
 
 
-\subsubsection{System of ODEs or equation unsure yet}
+\subsubsection{System of ODEs}
 
 The population will be referred to as N. where \[N=S+I+R\]
 We want to study how the sizes of the cohorts change over time, specifically I(t) which is the size of the infected cohort at a specific time t. To do this we require a set of equations involving the cohorts rates of change.  While I(t) shows the actual number of individuals infected at that given time, the historical, observed data contains solely the weekly reported cases.  Therefore, we were required to convert the SIR model to weekly incidence. We treat S,I,R as continuous variables, therefore we can take their rates of change.
@@ -74,7 +74,7 @@ where $\beta$ is the transmitting rate per capita. $\gamma$ is the recovery rate
 The SIR model requires certain assumptions to simplify the population. It assumes homogeneous mixing , meaning that everyone in the population has the same probability of  coming in to contact with one and other. The model also assumes a closed population. Therefore, it does not account for births,  relocation, or deaths caused due to factors(JAMA). 
 
 \subsection{Measles data Selection}
-The measles outbreak data was collected from Project Tycho, a large open-access data source with millions of records of infectious diseases cases. The timeline and population chosen were January 1st, 1960 to August 21st 1960,  Massachusetts, United states. The SIR model can only describe one outbreak at a time, so the chosen timeline observed is an outbreak that occurred over approximate 32 weeks. Once the data was collected we were able to produce a plot. Figure 1 depicts the observed incidence of measles during the outbreak period. Looking at Figure 1 a reality smooth exponential growth can be seen from weeks 1 to 15. Weeks 15 - 20 show the peak of the outbreak where the case value reached a max of 1214. After week 20 the Figure shows a relatively stead decrease in weekly cases, implying individuals were moving from the infected cohort to the recovered cohort. The trajectory this plot takes depicts a very standard outbreak. 
+The measles outbreak data was collected from Project Tycho, a large open-access data source with millions of records of infectious diseases cases. The timeline and population chosen were January 1st, 1960 to August 21st 1960,  Massachusetts, United states. The SIR model can only describe one outbreak at a time, so the chosen timeline observed is an outbreak that occurred over approximate 32 weeks. Once the data was collected we were able to produce a plot. Figure 1 depicts the observed incidence of measles during the outbreak period. Looking at Figure 1 a reality smooth exponential growth can be seen from weeks 1 to 15. Weeks 15 - 20 show the peak of the outbreak where the case value reached a max of 1214. After week 20 the Figure shows a relatively steady decrease in weekly cases, implying individuals were moving from the infected cohort to the recovered cohort. The trajectory this plot takes depicts a very standard outbreak. 
 
 \begin{figure}
     \centering
@@ -87,9 +87,9 @@ The measles outbreak data was collected from Project Tycho, a large open-access 
 Once we had the observed incidence of the chosen measles outbreak we then implemented the SIR model. To do so, we required initial conditions and model parameters. The $R_0$ value for measles has been cited to be within the range of 12-18. We chose to run the SIR model three times, each using a different $R_0$ value, to study how the accuracy changed as $R_0$.  We chose, $R_0=12$, $R_0=15$, and $R_0=18$ to cover the cited range. 
 After observing that this range of cited $R_0$ values did not replicate accurate patterns of the observed curve, we then ran the model with values outside of the range to study how $R_0$ values effect the shape of the modeled curve.
 
-Next, $N$ was chosen. As stated previously the SIR model assumes homogeneous mixing within a population. Therefore, we chose to make $N$ an effective population, meaning a smaller population size that would experience a similar rate of the infectious spread as the actual infected populations. Realistically the outbreak we are studying happened within a smaller community within Massachusetts where homogeneous mixing is more likely. Knowing this, we chose $N = 5,000$.    
+Next, $N$ was chosen. As stated previously the SIR model assumes homogeneous mixing within a population. Therefore, we chose to make $N$ an effective population, meaning a smaller population size that would experience a similar rate of the infectious spread as the actual infected populations. Realistically the outbreak we are studying happened within a smaller community within Massachusetts where homogeneous mixing is more likely.
 
-Then we required and $I(0)$ value. The SIR model studies when a population is exposed to an infectious disease and how that disease spreads form cohort to cohort. Therefore, the initial $I(0)$ value can not be equal to zero, we must start with a small number of infected. Since our population size was small we chose $I(0)=3$ along with $R(0) = 0$. Once these values were selected, they allowed us to obtain $S(0)$ using: \[S_0 = N - I(0) - R(0)\]. 
+Then we required and $I(0)$ value. The SIR model studies when a population is exposed to an infectious disease and how that disease spreads form cohort to cohort. Therefore, the initial $I(0)$ value can not be equal to zero, we must start with a small number of infected. Since our population size was small we chose $I(0)=3$ along with $R(0) = 0$. Once these values were selected, they allowed us to obtain $S(0)$ using: \[S_0 = N - I(0) - R(0)\]
 
 \subsubsection{Model Parameters}
 We then required the Model's parameters $\beta$ and $\gamma$. $\gamma$ is the infectious period, not the full time of recovery from the disease. For measles the infectious period is cited to be around 7-10 days. With this given range we choose our $\gamma$ rate to be $0.875$ per week. With our chosen $R_0$ and $\gamma$ we could then calculate $\beta$.
@@ -100,6 +100,24 @@ We then required the Model's parameters $\beta$ and $\gamma$. $\gamma$ is the in
 A SIR model usually consists of S, I, and R curves. However, the SIR model describes what is happening in a moment in time, how many individuals are currently susceptible, infected, and recovered, whilst the observed data shows how many  cases there are each week. Therefore, we had to convert the SIR models output into weekly incidence. To do this we had to examine the Susceptible cohort at the begging and end of each week. As the disease spreads throughout the population the size of the susceptible cohort decreases, more individuals become infected. Thus, the change in size of the suitable cohort is the amount of individuals who are infected each week. All of this was done using a python code
 
 \subsection{COVID-19 data selection}
+The COVID-19 data was also collected from project Tycho.  The COVID data was provide in daily case counts, we chose to plot blank dates. The observed case count curve is depicted in Figure\ref{fig:COVID observed}. Similar to the measles data the early phase shows exponential growth for the first few days, then reaches a peak of approximately 3500 cases. This outbreak did then have an abrupt drop in cases, this is likely do to an inaccurate case count, or failed reported cases.
+
+
+
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{image10.png}
+    \caption{COVID-observed}
+    \label{fig:COVID observed}
+\end{figure}
+\subsubsection{Initial conditions for COVID-19}
+once again, to implement the SIR model we required initial conditions and parameters to implement the SIR model. The $R_0$ for COVID-19 is cited to be between 1.4 and 2.5. To stay consistent with out easels data we chose to run the model with three different $R_0$ values of $R_0=1.4$, $R_0= 2.0$, and $R_0=2.5$. We chose the same population size of $N=5000$, again not meaning to represent the total population of Massachusetts but an effective population that participates in an outbreaks with homogeneous mixing. The same $I(0) = 3$ for the COVID model.
+
+\subsubsection{COVID-19 Model Parameters}
+The infectious period for COVID-19 is cited to be approximately 7 days, using this approximation we valued our  $\gamma$ at 0.143 per day. again using both $R_0$ and $\gamma$ we could calculate $\betta$. The COVID-19 data was provided in daily cases so the SIR model had to be converted to daily incidence, instead of weekly. 
+
 \section{Results}
 \subsection{Measles}
 \begin{figure}
@@ -136,11 +154,39 @@ Figure\ref{fig:$R_0 = 18$} is the least accurate of the three plots. The peak ca
     \label{fig:R_0 = 2}
 \end{figure}
 
-in Figure\ref{fig:R_0 = 2} we lowered the $R_0$ value significantly to $R_0= 2$, far out of the measles cited range. With such a low value this plot no longer represents an epidemic curve for measles, however, it does show a far more realistic shape. The curve has a rapid growth over the first weeks, reaches a clear peak, and then rapidly decreases to zero. This pattern is similar to that of the observed outbreak curve. This makes it clear that the SIR model better replicates an epidemic curve when it has a lower $R_0$ value. Measles in cited to have one of the highest $R_0$ values of all infectious diseases. This suggests that the SIR model is not a good fit for a disease such as measles with this extremely high value, but it may be more effective when other diseases are implemented. We then look at the results of COVID-19, a infectious diseases with a much lower $R_0 value$. 
+in Figure\ref{fig:R_0 = 2} we lowered the $R_0$ value significantly to $R_0= 2$, far out of the measles cited range. With such a low value this plot no longer represents an epidemic curve for measles, however, it does show a far more realistic shape. The curve has a rapid growth over the first weeks, reaches a clear peak, and then rapidly decreases to zero. This pattern is similar to that of the observed outbreak curve. This makes it clear that the SIR model better replicates an epidemic curve when it has a lower $R_0$ value. Measles in cited to have one of the highest $R_0$ values of all infectious diseases. This suggests that the SIR model, under homogeneous mixing and constant parameters struggles to produce observed measles outbreak We then look at the results of COVID-19, a infectious diseases with a much lower $R_0 value$. 
+
+\subsection{COVID-19}
+
+Figure\ref{fig:1.4} shows the implemented SIR model for $R_0=1.4$. This curve shows a steady slow growth, the cases increase exponentially for a long period of time and there is no peak within the observation window. Figure\ref{fig:R0=2.0} is the SIR model with $R_0=2.0$. This plot also a slower growth, where the cases increase exponentially. The plot begins to reach a peak, but does not fully reach it during the time period. Figure\ref{fig:2.5} depicts the SIR model for $R_0 = 2.5$. This plot has a fast exponential growth. The peak occurs earlier than the previous plots and can be seen around day 42, then the case count decreases. Though the SIR model had a longer observational window that the observatory data we can still compare the overall patterns of the models to the observed data. Each plot did a relatively good job at depicting the exponential growth phase, unlike measles every plot displayed this. the SIR model with the $R_0=2.5$ had a relatively accurate patter of exponential growth to the observed data. Unlike the others this plot also shows a peak which happens later in the curve, much like the observed outbreak. The SIR model will always output a smooth curve, it does not matter what diseased is modeled. Because the model is a system of concinnous ODEs, it also assumes average behavior of the entire population and does not account for any randomness or reporting delays. Therefore the model can not produce the dips and spikes we see in the observed data. My comparison of the models and the observed data is on qualitative agreement in the outbreak patterns and not matching the exact daily case counts.
+
+\subsection{Discussion}
+The SIR model's for measles, did not display accurate outbreak patters. Whereas, the COVID-19 curves did. I believe this is due to the large difference in their $R_0$ values. The effectiveness of the model based of it's basic reputation value is reasonable with the population assumptions. A diseases with high the basic reproduction value, means one infected individual will infect persons than that of an infected individual with a lower value. When we assume a closed homogeneous population, we are assuming the population size is not changing due to births and migration and everyone in the population has equal probability of coming into contact with one another. This aligns with the SIR model for measles showing everyone getting infected immediately. If one person can infect 18 individuals, all of whom have equal probably of coming into contact, it would not take long for everyone to be infected. Then we look at the plots for COVID-19, which showed exponential growth and a peak. On average one infected individual in infecting 1.4 to 2.5 individuals which appeared to allow the SIR model to depict a realistic outbreak patters. These results stand to reason that the $R_0$ value has a large impact of the accuracy of the SIR model. Based off of these results we would that the SIR model can be used for diseases with a lower basic reproduction value, but is not effective for diseases with an increased value. Though it is important to be aware that the model can give an general idea of an outbreak pattern but should certainly not be the sole model used due to its generalizations.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{image5.png}
+    \caption{COVID-19 $R_0 = 2.5$}
+    \label{fig:2.5}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{image1.png}
+    \caption{SIR model for R=1.4}
+    \label{fig:1.4}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{image2.png}
+    \caption{SIR model for COVID-19 $R_0=2.0$}
+    \label{fig:R0=2.0}
+\end{figure}
 
 \section{Limitations}
 
-The SIR model is a very simple epidemic model. We stated that the model assuming homogeneous mixing, which is unrealistic. Entire populations do not have homogeneous mixing. This then forced us to use a smaller population size in our model, which could definitely effect the results. The $R_0$ appeared to have a strong influence over the model. If we revisit was this value is, it is the basic reproduction number, which is the number of individuals that one infected person can infect on average. So, when an infectious disease has a high $R_0$ value and the model assumes homogeneous mixing, the model infects almost everyone imminently. This makes sense, if one person can infect on average 18 people and everyone in the population has the same probability of coming into contact with that individual, it would not take long for the full population to be infected.
+The SIR model is a very simple and idealized epidemic model. We stated that the model assumes a closed population with homogeneous mixing, which is unrealistic. This assumption is a limitation to the SIR model. This then forced us to use a smaller population size in our model, which could definitely effect the outputted results. We also assume an I(0) value, along with a $\gamma$ value which was taken from a provided range of infectious dates. All of which could alter the SIR model's output. The SIR model also outputs a constant curve with no dips or fluctuations in the case values, which is unrealistic. 
 
 
 \newpage
