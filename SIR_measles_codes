@@ -1,0 +1,81 @@
+#measels observed
+obs = np.array([
+    355, 394, 308, 368, 417, 565, 400, 471, 485, 515, 592, 697, 771,
+    1091, 980, 1214, 1176, 1071, 1214, 1010, 918, 1065, 1011, 729,
+    523, 317, 215, 250, 143, 126, 74, 73, 36
+])
+
+weeks = np.arange(len(obs))  # 0, 1, 2, ..., 32
+
+plt.figure(figsize=(10, 6))
+plt.plot(weeks, obs, marker='o', label="Observed weekly cases")
+plt.xlabel("Week")
+plt.ylabel("Weekly cases")
+plt.title("Observed measles weekly cases")
+plt.grid(True)
+plt.legend()
+plt.show()
+
+plt.figure(figsize=(10, 6))
+plt.plot(df["week"], df["CountValue"], marker='o', label="Observed weekly cases")
+plt.xlabel("Week")
+plt.ylabel("Weekly cases")
+plt.title("Observed measles weekly cases")
+plt.grid(True)
+plt.legend()
+plt.show()
+
+#SIR model for measels
+#measels SIR model
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import odeint
+
+# ----- Assumptions -----
+N = 5000
+I0, R0_init = 3, 0
+S0 = N - I0 - R0_init
+
+gamma = 0.875          # per week
+R0_basic = 12
+beta = R0_basic * gamma
+
+def derivative(X, t, beta, gamma, N):
+    S, I, R = X
+    dS = -beta * S * I / N
+    dI = beta * S * I / N - gamma * I
+    dR = gamma * I
+    return [dS, dI, dR]
+
+
+dt = 0.01                      # 0.01 weeks ~ 0.07 days
+t = np.arange(0, 33 + dt, dt)  # 0..33 weeks
+
+X0 = [S0, I0, R0_init]
+res = odeint(derivative, X0, t, args=(beta, gamma, N))
+S, I, R = res.T
+
+
+inc_rate = beta * S * I / N    # people per week
+
+# Integrate that rate over each week (0-1, 1-2, ..., 32-33)
+week_edges = np.arange(0, 34, 1)  # edges 0..33
+idx_edges = (week_edges / dt).astype(int)
+
+weekly_cases = []
+for a, b in zip(idx_edges[:-1], idx_edges[1:]):
+    # trapezoid integration over the week
+    weekly_cases.append(np.trapz(inc_rate[a:b+1], t[a:b+1]))
+
+weeks = np.arange(1, len(weekly_cases) + 1)  # length 33 (weeks 0..32)
+
+
+
+plt.figure(figsize=(10, 6))
+plt.plot(weeks, weekly_cases, marker='o', label="Model weekly cases")
+plt.xlabel("Week")
+plt.ylabel("Weekly cases")
+plt.title("SIR model: weekly cases (integrated incidence)")
+plt.grid(True)
+plt.legend()
+plt.show()
