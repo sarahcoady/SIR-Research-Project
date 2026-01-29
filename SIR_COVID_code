@@ -1,0 +1,75 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import odeint
+
+covid_cum = np.array([
+    35, 41, 43, 41, 47,
+    233, 267, 322, 384, 389,
+    633, 725, 1075, 1474,
+    3600, 2119, 2467, 3001, 3502,
+    79, 91, 117, 130, 145, 170
+])
+covid_obs = np.diff(covid_cum)
+covid_obs = np.clip(covid_obs, 0, None)
+
+days = np.arange(len(covid_obs))  # 0..T-1
+
+plt.figure(figsize=(10,6))
+plt.plot(days, covid_obs, marker='o', label="Observed daily cases")
+plt.xlabel("Day")
+plt.ylabel("Daily cases")
+plt.title("Observed COVID daily cases (single outbreak)")
+plt.grid(True)
+plt.legend()
+plt.show()
+# ----- SIR assumptions for COVID (time unit = days) -----
+N = 5000            # scaled population 
+I0, R0_init = 3, 0
+S0 = N - I0 - R0_init
+
+gamma = 0.143         # per day (~7-day infectious period)
+R0_basic = 2.5
+beta = R0_basic * gamma
+
+def derivative(X, t, beta, gamma, N):
+    S, I, R = X
+    dS = -beta * S * I / N
+    dI = beta * S * I / N - gamma * I
+    dR = gamma * I
+    return [dS, dI, dR]
+
+# --- Solve on a fine grid (days) ---
+T = len(covid_obs)                 # number of observed days
+dt = 0.1                           # 0.1 day steps (fine enough)
+t = np.arange(0, T + 1 + dt, dt)   # from day 0 to day T+1
+
+X0 = [S0, I0, R0_init]
+res = odeint(derivative, X0, t, args=(beta, gamma, N))
+S, I, R = res.T
+
+# --- Instantaneous infection rate (people per day) ---
+inc_rate = beta * S * I / N
+
+# --- Integrate over each day (0-1, 1-2, ..., T-1 to T) ---
+day_edges = np.arange(0, T + 1, 1)
+idx_edges = (day_edges / dt).astype(int)
+
+sir_daily = []
+for a, b in zip(idx_edges[:-1], idx_edges[1:]):
+    sir_daily.append(np.trapz(inc_rate[a:b+1], t[a:b+1]))
+sir_daily = np.array(sir_daily)  # length T
+
+# Optional: scale model infections to reported cases (recommended)
+rho_hat = (covid_obs @ sir_daily) / (sir_daily @ sir_daily)
+sir_reported = rho_hat * sir_daily
+
+# --- Plot comparison (like measles) ---
+plt.figure(figsize=(10,6))
+#plt.plot(days, covid_obs, marker='o', label="Observed daily cases")
+plt.plot(days, sir_reported, marker='o', label=f"SIR daily incidence")
+plt.xlabel("Day")
+plt.ylabel("Daily cases")
+plt.title("COVID: Observed vs SIR (daily incidence)")
+plt.grid(True)
+plt.legend()
+plt.show()
